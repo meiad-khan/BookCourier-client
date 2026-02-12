@@ -26,7 +26,7 @@ const Coverage = ({ coveragePromise }) => {
   };
 
   return (
-    <div className="w-full py-25 px-20 bg-base-100 shadow-md rounded-2xl my-15">
+    <div className="w-full lg:py-25 lg:px-20 bg-base-100 shadow-md rounded-2xl my-15">
       <h3 className="text-5xl mb-5">We are available in 64 districts</h3>
 
       {/* input field */}

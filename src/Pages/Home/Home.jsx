@@ -3,6 +3,7 @@ import Banner from './Banner';
 import LatestBook from './LatestBook';
 import Coverage from './Coverage';
 import Loading from '../../Components/Loading/Loading';
+import WhyChoseUs from './WhyChoseUs';
 
  const coveragePromise =  fetch("/serviceCenters.json").then((res) => res.json());
 
@@ -19,6 +20,9 @@ const Home = () => {
         <Suspense fallback={<Loading></Loading>}>
           <Coverage coveragePromise={coveragePromise}></Coverage>
         </Suspense>
+      </div>
+      <div>
+        <WhyChoseUs></WhyChoseUs>
       </div>
     </div>
   );
