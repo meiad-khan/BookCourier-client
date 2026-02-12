@@ -1,12 +1,23 @@
-import React, { use, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import Loading from '../../Components/Loading/Loading';
 
-const Coverage = ({ coveragePromise }) => {
+const Coverage = () => {
   const position = [23.685, 90.3563];
-  const centers = use(coveragePromise);
   const mapRef = useRef(null);
+  const [centers, setCenters] = useState([]);
+  const [loading, setLoading] = useState(true);
   // console.log('center is ', centers);
+
+  useEffect(() => {
+    fetch("/serviceCenters.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setCenters(data);
+        setLoading(false);
+      });
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -24,6 +35,10 @@ const Coverage = ({ coveragePromise }) => {
       mapRef.current.flyTo(coord, 12);
     }
   };
+
+  if (loading) {
+    return <Loading></Loading>
+  }
 
   return (
     <div className="w-full lg:py-25 lg:px-20 bg-base-100 shadow-md rounded-2xl my-15">
@@ -61,6 +76,7 @@ const Coverage = ({ coveragePromise }) => {
 
       <div className="w-full h-[800px]">
         <MapContainer
+          key={centers.length}
           center={position}
           zoom={7}
           scrollWheelZoom={false}

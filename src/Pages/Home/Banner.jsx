@@ -14,7 +14,7 @@ const Banner = () => {
           <img src={bannerImg1} />
         </div> */}
         <div
-          className="hero min-h-125"
+          className="hero min-h-125 rounded-xl"
           style={{
             backgroundImage: `url(${bannerImg1})`,
           }}
@@ -34,7 +34,7 @@ const Banner = () => {
           </div>
         </div>
         <div
-          className="hero min-h-125"
+          className="hero min-h-125 rounded-xl"
           style={{
             backgroundImage: `url(${bannerImg2})`,
           }}
@@ -54,7 +54,7 @@ const Banner = () => {
           </div>
         </div>
         <div
-          className="hero min-h-125"
+          className="hero min-h-125 rounded-xl"
           style={{
             backgroundImage: `url(${bannerImg3})`,
           }}

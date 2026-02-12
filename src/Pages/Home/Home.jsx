@@ -1,11 +1,11 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import Banner from './Banner';
 import LatestBook from './LatestBook';
 import Coverage from './Coverage';
-import Loading from '../../Components/Loading/Loading';
 import WhyChoseUs from './WhyChoseUs';
+import ImpactSection from './ImpactSection';
+import CommunitySection from './ComunitySection';
 
- const coveragePromise =  fetch("/serviceCenters.json").then((res) => res.json());
 
 const Home = () => {
   return (
@@ -17,12 +17,16 @@ const Home = () => {
         <LatestBook></LatestBook>
       </div>
       <div>
-        <Suspense fallback={<Loading></Loading>}>
-          <Coverage coveragePromise={coveragePromise}></Coverage>
-        </Suspense>
+          <Coverage ></Coverage>
       </div>
       <div>
         <WhyChoseUs></WhyChoseUs>
+      </div>
+      <div className='mt-10'>
+        <ImpactSection></ImpactSection>
+      </div>
+      <div className='my-20'>
+        <CommunitySection></CommunitySection>
       </div>
     </div>
   );
