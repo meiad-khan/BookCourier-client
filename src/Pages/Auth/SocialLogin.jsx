@@ -1,9 +1,33 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
 
 const SocialLogin = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
+
+  const { googleSignIn } = useAuth();
+
   const handleGoogleLogin = () => {
-    console.log('clicked')
-  }
+    googleSignIn()
+      .then((res) => {
+        // console.log(result.user);
+        const userInfo = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          console.log("user posted to db successfully ", res.data);
+          navigate(location.state || "/");
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="text-center mb-8 w-full">
       <h3 className="mb-3">or</h3>
