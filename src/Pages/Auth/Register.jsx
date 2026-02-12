@@ -71,7 +71,7 @@ const Register = () => {
 
   return (
     <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl mt-10 mb-20">
-      <h3 className="text-3xl text-center font-bold">Please Register</h3>
+      <h3 className="text-3xl text-center font-bold pt-9">Please Register</h3>
       <form className="card-body" onSubmit={handleSubmit(handleRegister)}>
         <fieldset className="fieldset">
           {/* name */}
@@ -149,7 +149,7 @@ const Register = () => {
           Already Have a account.{" "}
           <Link
             state={location.state}
-            className="text-secondary underline"
+            className="text-primary underline"
             to={"/login"}
           >
             login

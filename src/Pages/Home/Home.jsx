@@ -5,6 +5,7 @@ import Coverage from './Coverage';
 import WhyChoseUs from './WhyChoseUs';
 import ImpactSection from './ImpactSection';
 import CommunitySection from './ComunitySection';
+import HowItWorks from './HowItWorks';
 
 
 const Home = () => {
@@ -22,6 +23,10 @@ const Home = () => {
       <div>
         <WhyChoseUs></WhyChoseUs>
       </div>
+      <div className='mt-15'>
+        <HowItWorks></HowItWorks>
+      </div>
+
       <div className='mt-10'>
         <ImpactSection></ImpactSection>
       </div>
