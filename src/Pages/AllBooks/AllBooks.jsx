@@ -3,6 +3,7 @@ import React, {  useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../../Components/Loading/Loading";
 import { FaArrowLeft, FaArrowRight, FaHeart, FaRegHeart } from "react-icons/fa";
+import { Link } from "react-router";
 
 const AllBooks = () => {
   const axiosSecure = useAxiosSecure();
@@ -151,9 +152,9 @@ const AllBooks = () => {
               </div>
 
               <div className="card-actions mt-4">
-                <button className="btn btn-primary btn-sm w-full">
+                <Link to={`/all-books/${book._id}`} className="btn btn-primary btn-sm w-full">
                   View Details
-                </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -11,6 +11,7 @@ import Invoice from "../Pages/Dashboard/Invoice/Invoice";
 import AddBook from "../Pages/Dashboard/AddBook/AddBook";
 import MyBooks from "../Pages/Dashboard/MyBooks/MyBooks";
 import Orders from "../Pages/Dashboard/Orders/Orders";
+import BookDetails from "../Pages/BookDetails/BookDetails";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: 'all-books',
         element: <AllBooks></AllBooks>
+      },
+      {
+        path: 'all-books/:id',
+        element: <BookDetails></BookDetails>
       }
     ]
   },
