@@ -5,6 +5,12 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import AllBooks from "../Pages/AllBooks/AllBooks";
 import DashboardLayout from "../Layouts/DashboardLayout";
+import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
+import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
+import Invoice from "../Pages/Dashboard/Invoice/Invoice";
+import AddBook from "../Pages/Dashboard/AddBook/AddBook";
+import MyBooks from "../Pages/Dashboard/MyBooks/MyBooks";
+import Orders from "../Pages/Dashboard/Orders/Orders";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +41,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'my-orders',
-        element: <h3>My orders here..</h3>
+        element: <MyOrders></MyOrders>
+      },
+      {
+        path: 'my-profile',
+        element: <MyProfile></MyProfile>
+      },
+      {
+        path: 'invoice',
+        element: <Invoice></Invoice>
+      },
+      {
+        path: 'add-book',
+        element: <AddBook></AddBook>
+      },
+      {
+        path: 'my-books',
+        element:<MyBooks></MyBooks>
+      },
+      {
+        path: 'orders',
+        element: <Orders></Orders>
       }
     ]
   }
