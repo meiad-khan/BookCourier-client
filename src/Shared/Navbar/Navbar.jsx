@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Logo from '../../Components/Logo/Logo';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
+import { FaHome } from 'react-icons/fa';
+import { IoBookSharp } from 'react-icons/io5';
+import { MdDashboard } from 'react-icons/md';
 
 const Navbar = () => {
 
   const { user, logOut } = useAuth();
-
+  const navigate = useNavigate();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
@@ -22,13 +26,21 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to={"/"}>Home</NavLink>
+        <NavLink to={"/"}>
+          <FaHome />
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/all-books"}>Books</NavLink>
+        <NavLink to={"/all-books"}>
+          <IoBookSharp />
+          Books
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/dashboard"}>Dashboard</NavLink>
+        <NavLink to={"/dashboard"}>
+          <MdDashboard></MdDashboard>
+          Dashboard</NavLink>
       </li>
     </>
   );
@@ -74,9 +86,13 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn m-1 w-12 h-12 rounded-full"
+              className="m-1 w-12 h-12 rounded-full overflow-hidden"
             >
-              <img src={user.photoURL} alt="" />
+              <img
+                src={user.photoURL}
+                alt=""
+                className="w-full h-full object-cover"
+              />
             </div>
             <ul
               tabIndex="-1"
@@ -91,7 +107,16 @@ const Navbar = () => {
                 />
               </li>
               <li>
-                <a onClick={() => logOut()} className="btn btn-primary">
+                <a onClick={() => {
+                  logOut()
+                    .then(() => {
+                      toast.success('Logout successful')
+                      navigate('/');
+                    })
+                    .catch(() => {
+                      toast.error("Logout failed");
+                  })
+                }} className="btn btn-primary">
                   Log Out
                 </a>
               </li>

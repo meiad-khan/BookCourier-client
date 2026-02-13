@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import Loading from "../../Components/Loading/Loading";
 
 const LatestBook = () => {
   const axiosSecure = useAxiosSecure();
@@ -24,11 +25,7 @@ const LatestBook = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center py-20">
-        <span className="loading loading-spinner loading-lg text-primary"></span>
-      </div>
-    );
+    return <Loading></Loading>
   }
 
   return (
