@@ -5,6 +5,7 @@ import bannerImg3 from '../../assets/Banner/banner-3.jpg';
 import { BsArrowUpRightCircleFill } from 'react-icons/bs';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import { Link } from 'react-router';
 
 const Banner = () => {
   return (
@@ -29,7 +30,9 @@ const Banner = () => {
                 Explore thousands of stories, from timeless classics to modern
                 bestsellers.
               </p>
-              <button className="btn btn-primary">All Books</button>
+              <Link to={"/all-books"} className="btn btn-primary">
+                All Books
+              </Link>
             </div>
           </div>
         </div>
@@ -49,7 +52,9 @@ const Banner = () => {
                 Dive into worlds of imagination, knowledge, and inspiration —
                 all in one place.
               </p>
-              <button className="btn btn-primary">All Books</button>
+              <Link to={"/all-books"} className="btn btn-primary">
+                All Books
+              </Link>
             </div>
           </div>
         </div>
@@ -67,7 +72,9 @@ const Banner = () => {
                 Find books that expand your mind and spark your creativity every
                 day.
               </p>
-              <button className="btn btn-primary">All Books</button>
+              <Link to={"/all-books"} className="btn btn-primary">
+                All Books
+              </Link>
             </div>
           </div>
         </div>

@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../Components/Logo/Logo';
 import { Link, NavLink } from 'react-router';
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
+
+  const { user, logOut } = useAuth();
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   const links = (
     <>
@@ -19,7 +34,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-200 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,18 +58,53 @@ const Navbar = () => {
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-          {links}
+            {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl"><Logo></Logo></a>
+        <Link to={"/"} className="btn btn-ghost text-xl">
+          <Logo></Logo>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-         {links}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link to={'/register'} className="btn border-primary hover:bg-primary hover:text-white">Register</Link>
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn m-1 w-12 h-12 rounded-full"
+            >
+              <img src={user.photoURL} alt="" />
+            </div>
+            <ul
+              tabIndex="-1"
+              className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+            >
+              <li className="my-2">
+                <input
+                  onChange={(e) => handleTheme(e.target.checked)}
+                  type="checkbox"
+                  defaultChecked={localStorage.getItem("theme") === "dark"}
+                  className="toggle"
+                />
+              </li>
+              <li>
+                <a onClick={() => logOut()} className="btn btn-primary">
+                  Log Out
+                </a>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <Link
+            to={"/register"}
+            className="btn border-primary hover:bg-primary hover:text-white"
+          >
+            Register
+          </Link>
+        )}
       </div>
     </div>
   );
