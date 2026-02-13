@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../../Components/Loading/Loading";
 import { CgShoppingCart } from "react-icons/cg";
 import { BiHeart } from "react-icons/bi";
+import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import Logo from "../../Components/Logo/Logo";
 
 
 const BookDetails = () => {
@@ -12,6 +15,8 @@ const BookDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const modalRef = useRef();
 
   const {
     data: book,
@@ -25,6 +30,16 @@ const BookDetails = () => {
       return res.data;
     }
   });
+
+  const { register, handleSubmit, reset } = useForm({
+      shouldUnregister: true,
+  });
+  
+  const handleOrder = (data) => {
+    console.log('order placed', { data });
+    modalRef.current.close();
+  }
+
 
   if (isLoading)
     return <Loading></Loading>
@@ -103,7 +118,12 @@ const BookDetails = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="flex-[2] flex items-center justify-center bg-[#0F766E] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#0D635D] transition-all shadow-lg shadow-[#0F766E]/30 active:scale-95">
+                <button
+                  onClick={() => {
+                    modalRef.current.showModal();
+                  }}
+                  className="flex-[2] flex items-center justify-center bg-[#0F766E] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#0D635D] transition-all shadow-lg shadow-[#0F766E]/30 active:scale-95"
+                >
                   <CgShoppingCart className="w-5 h-5 mr-2" />
                   Order Now
                 </button>
@@ -116,6 +136,77 @@ const BookDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+      <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <div className="flex justify-between items-center">
+            <h3 className="font-bold text-lg"><Logo></Logo></h3>
+            <div className="modal-action -mt-1.5">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-secondary text-black">Close</button>
+              </form>
+            </div>
+          </div>
+          
+          <div>
+            <form onSubmit={handleSubmit(handleOrder)}>
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend text-2xl">
+                  Enter your details
+                </legend>
+                {/* your name.. */}
+                <label className="label">Your Name</label>
+                <input
+                  type="text"
+                  {...register("customerName")}
+                  className="input w-full"
+                  placeholder="Your Name"
+                  defaultValue={user?.displayName}
+                  readOnly
+                />
+
+                {/* Your Email.. */}
+                <label className="label">Your Email</label>
+                <input
+                  type="text"
+                  {...register("customerEmail")}
+                  className="input w-full"
+                  placeholder="Your Email"
+                  defaultValue={user?.email}
+                  readOnly
+                />
+
+                {/* your phone.. */}
+                <label className="label">Phone</label>
+                <input
+                  type="text"
+                  {...register("customerPhone")}
+                  className="input w-full"
+                  placeholder="Phone"
+                />
+
+                {/* your address.. */}
+                <label className="label">Address</label>
+                <input
+                  type="text"
+                  {...register("customerAddress")}
+                  className="input w-full"
+                  placeholder="Address"
+                />
+
+                <input
+                  type="submit"
+                  value="Place Order"
+                  className="btn btn-primary mt-8 text-white"
+                />
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };
