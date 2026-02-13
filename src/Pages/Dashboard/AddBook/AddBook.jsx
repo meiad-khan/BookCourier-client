@@ -1,18 +1,32 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import useAuth from '../../../hooks/useAuth';
+import React from "react";
+import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddBook = () => {
-
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, reset } = useForm({
     shouldUnregister: true,
   });
-  
+
   const handleAddBook = (data) => {
-    console.log({ data });
-    reset();
-  }
+   
+    // console.log(typeof(data));
+    data.librarianEmail = user.email;
+
+    axiosSecure.post("/books", data).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          title: "Congrates",
+          text: "Book added Successfully.",
+          icon: "success",
+        });
+        reset();
+      }
+    });
+  };
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-4 rounded-xl shadow-2xl">
@@ -21,9 +35,10 @@ const AddBook = () => {
       </h2>
 
       <form onSubmit={handleSubmit(handleAddBook)}>
-
         <fieldset className="fieldset">
-          <legend className="fieldset-legend text-2xl">Enter your Book details</legend>
+          <legend className="fieldset-legend text-2xl">
+            Enter your Book details
+          </legend>
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="flex-1">
               {/* book name.. */}
