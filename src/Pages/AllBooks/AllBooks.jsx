@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../../Components/Loading/Loading";
 import { FaArrowLeft, FaArrowRight, FaHeart, FaRegHeart } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const AllBooks = () => {
+
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const [wishlist, setWishlist] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const limit = 6;
@@ -15,17 +17,16 @@ const AllBooks = () => {
     queryKey: ["all-books", currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/all-books?limit=${limit}&skip=${currentPage * limit}}`,
+        `/all-books?limit=${limit}&skip=${currentPage * limit}`,
       );
       return res.data;
     },
-    keepPreviousData: true, // prevents UI flicker
+    
   });
 
-   const books = data?.result || [];
-   const totalBooks = data?.total || 0;
-   const totalPage = Math.ceil(totalBooks / limit);
-
+  const books = data?.result || [];
+  const totalBooks = data?.total || 0;
+  const totalPage = Math.ceil(totalBooks / limit);
 
   const handleWishlist = (id) => {
     if (wishlist.includes(id)) {
@@ -68,20 +69,13 @@ const AllBooks = () => {
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input
-              type="search"
-              required
-              placeholder="Search"
-            />
+            <input type="search" required placeholder="Search" />
           </label>
         </div>
 
         {/* sort */}
         <div>
-          <select
-            defaultValue="Sort"
-            className="select select-md"
-          >
+          <select defaultValue="Sort" className="select select-md">
             <option disabled={true}>Sort</option>
             <option>price-asc</option>
             <option>price-desc</option>
@@ -92,8 +86,9 @@ const AllBooks = () => {
         {books.map((book) => (
           <div
             key={book._id}
+            onClick={() => navigate(`/book-details/${book._id}`)}
             className="relative card bg-base-100 shadow-md 
-                                hover:shadow-xl transition duration-300 
+                                hover:shadow-xl transition duration-300 cursor-pointer
                                 hover:opacity-90 hover:scale-103"
           >
             {/* Wishlist Icon */}
@@ -129,7 +124,7 @@ const AllBooks = () => {
 
                 <span
                   className={`badge ${
-                    book.bookStatus === "published"
+                    book.bookStatus === "Published"
                       ? "badge-success"
                       : "badge-warning"
                   }`}

@@ -67,9 +67,9 @@ const BookDetails = () => {
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
-          className="mb-8 flex items-center text-sm font-medium text-[#0F766E] hover:text-blue-500 transition-colors"
+          className="mb-8 flex items-center text-sm font-medium text-[#0F766E] cursor-pointer hover:text-blue-500 transition-colors"
         >
-          ← Back to All Books Page
+          ← Back to Previous Page
         </button>
 
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
@@ -83,7 +83,7 @@ const BookDetails = () => {
               />
             </div>
 
-            {/* Right Column: Info Section */}
+            {/* Right Column:  */}
             <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-between">
               <div>
                 <div className="flex justify-between items-start mb-4">
@@ -127,18 +127,18 @@ const BookDetails = () => {
                 </div>
               </div>
 
-              {/* Action Buttons */}
+              {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => {
                     modalRef.current.showModal();
                   }}
-                  className="flex-[2] flex items-center justify-center bg-[#0F766E] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#0D635D] transition-all shadow-lg shadow-[#0F766E]/30 active:scale-95"
+                  className="flex-[2] flex items-center justify-center bg-[#0F766E] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#0D635D] transition-all shadow-lg shadow-[#0F766E]/30 active:scale-95 cursor-pointer"
                 >
                   <CgShoppingCart className="w-5 h-5 mr-2" />
                   Order Now
                 </button>
-                <button className="flex-1 flex items-center justify-center border-2 border-slate-200 text-slate-600 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all active:scale-95">
+                <button className="flex-1 flex items-center justify-center border-2 border-slate-200 text-slate-600 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all active:scale-95 cursor-pointer">
                   <BiHeart className="w-5 h-5 mr-2" />
                   Wishlist
                 </button>
@@ -196,7 +196,7 @@ const BookDetails = () => {
                 <label className="label">Phone</label>
                 <input
                   type="text"
-                  {...register("customerPhone")}
+                  {...register("customerPhone", { required: true })}
                   className="input w-full"
                   placeholder="Phone"
                 />
@@ -205,7 +205,7 @@ const BookDetails = () => {
                 <label className="label">Address</label>
                 <input
                   type="text"
-                  {...register("customerAddress")}
+                  {...register("customerAddress", { required: true })}
                   className="input w-full"
                   placeholder="Address"
                 />

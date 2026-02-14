@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Loading from "../../Components/Loading/Loading";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const LatestBook = () => {
+
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const [wishlist, setWishlist] = useState([]);
 
   const { data: latestBooks = [], isLoading } = useQuery({
@@ -39,9 +41,10 @@ const LatestBook = () => {
         {latestBooks.map((book) => (
           <div
             key={book._id}
+            onClick={() => navigate(`/book-details/${book._id}`)}
             className="relative card bg-base-100 shadow-md 
                        hover:shadow-xl transition duration-300 
-                       hover:opacity-90 hover:scale-103"
+                       hover:opacity-90 hover:scale-103 cursor-pointer"
           >
             {/* Wishlist Icon */}
             <button

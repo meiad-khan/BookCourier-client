@@ -36,12 +36,12 @@ const PaymentSuccessful = () => {
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
       <div className="card w-full max-w-lg bg-base-100 shadow-2xl rounded-2xl">
         <div className="card-body text-center">
-          {/* Success Icon */}
+          
           <div className="flex justify-center mb-6">
             <FaCheckCircle className="text-6xl text-success animate-bounce" />
           </div>
 
-          {/* Heading */}
+          
           <h2 className="text-3xl font-bold text-primary mb-3">
             Payment Successful
           </h2>
@@ -51,7 +51,7 @@ const PaymentSuccessful = () => {
             successfully.
           </p>
 
-          {/* Payment Info Box */}
+          
           <div className="bg-base-200 p-5 rounded-xl text-left space-y-3 mb-6">
             <p className="text-sm text-gray-500">Transaction ID</p>
             <p className="font-semibold text-lg break-all text-secondary">
@@ -64,7 +64,7 @@ const PaymentSuccessful = () => {
             </p>
           </div>
 
-          {/* Buttons */}
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/dashboard/my-orders"
