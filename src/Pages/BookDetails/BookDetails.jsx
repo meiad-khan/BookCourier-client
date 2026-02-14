@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams} from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../../Components/Loading/Loading";
@@ -12,7 +12,6 @@ import Swal from "sweetalert2";
 
 const BookDetails = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const modalRef = useRef();
@@ -64,13 +63,6 @@ const BookDetails = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 lg:mt-8 lg:mb-10">
       <div className="max-w-5xl mx-auto">
-        {/* Back Button */}
-        <button
-          onClick={() => navigate(-1)}
-          className="mb-8 flex items-center text-sm font-medium text-[#0F766E] cursor-pointer hover:text-blue-500 transition-colors"
-        >
-          ← Back to Previous Page
-        </button>
 
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="flex flex-col md:flex-row">
