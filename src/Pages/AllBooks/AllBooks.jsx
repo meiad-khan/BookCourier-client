@@ -11,7 +11,7 @@ const AllBooks = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const limit = 6;
 
-  const { data, isLoading, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["all-books", currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(

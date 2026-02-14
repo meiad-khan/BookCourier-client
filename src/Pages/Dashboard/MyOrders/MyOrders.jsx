@@ -53,8 +53,14 @@ const MyOrders = () => {
       customerEmail: order.customerEmail,
       bookName: order.bookName,
     }
-    
-    console.log({ paymentInfo });
+
+     const res = await axiosSecure.post(
+       "/create-checkout-session",
+       paymentInfo,
+     );
+     console.log(res.data);
+     // window.location.href = res.data.url;
+     window.location.assign(res.data.url);
   }
   // console.log('my orders ', { orders });
 

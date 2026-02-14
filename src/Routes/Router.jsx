@@ -12,64 +12,69 @@ import AddBook from "../Pages/Dashboard/AddBook/AddBook";
 import MyBooks from "../Pages/Dashboard/MyBooks/MyBooks";
 import Orders from "../Pages/Dashboard/Orders/Orders";
 import BookDetails from "../Pages/BookDetails/BookDetails";
+import PaymentSuccessful from "../Pages/Dashboard/PaymentSuccess/PaymentSuccessful";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <RootLayout></RootLayout>,
     children: [
       {
-        index: true, 
-        element: <Home></Home>
+        index: true,
+        element: <Home></Home>,
       },
       {
-        path: 'login',
-        element: <Login></Login>
+        path: "login",
+        element: <Login></Login>,
       },
       {
-        path: 'register',
-        element: <Register></Register>
+        path: "register",
+        element: <Register></Register>,
       },
       {
-        path: 'all-books',
-        element: <AllBooks></AllBooks>
+        path: "all-books",
+        element: <AllBooks></AllBooks>,
       },
       {
-        path: 'book-details/:id',
-        element: <BookDetails></BookDetails>
-      }
-    ]
+        path: "book-details/:id",
+        element: <BookDetails></BookDetails>,
+      },
+    ],
   },
   {
-    path: 'dashboard',
+    path: "dashboard",
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
-        path: 'my-orders',
-        element: <MyOrders></MyOrders>
+        path: "my-orders",
+        element: <MyOrders></MyOrders>,
       },
       {
-        path: 'my-profile',
-        element: <MyProfile></MyProfile>
+        path: "my-profile",
+        element: <MyProfile></MyProfile>,
       },
       {
-        path: 'invoice',
-        element: <Invoice></Invoice>
+        path: "invoice",
+        element: <Invoice></Invoice>,
       },
       {
-        path: 'add-book',
-        element: <AddBook></AddBook>
+        path: "add-book",
+        element: <AddBook></AddBook>,
       },
       {
-        path: 'my-books',
-        element:<MyBooks></MyBooks>
+        path: "my-books",
+        element: <MyBooks></MyBooks>,
       },
       {
-        path: 'orders',
-        element: <Orders></Orders>
-      }
-    ]
-  }
-])
+        path: "orders",
+        element: <Orders></Orders>,
+      },
+      {
+        path: "payment-success",
+        element: <PaymentSuccessful></PaymentSuccessful>
+      },
+    ],
+  },
+]);
 
 export default router;
