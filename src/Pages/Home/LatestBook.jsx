@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import Loading from "../../Components/Loading/Loading";
+import { Link } from "react-router";
 
 const LatestBook = () => {
   const axiosSecure = useAxiosSecure();
@@ -29,7 +30,7 @@ const LatestBook = () => {
   }
 
   return (
-    <section className="py-10 px-4 md:px-10">
+    <section className="py-10 px-4 md:px-10 border-2 border-primary rounded-2xl">
       <h4 className="text-5xl font-bold text-center mb-12">
         Latest <span className="text-primary">Books</span>
       </h4>
@@ -85,9 +86,12 @@ const LatestBook = () => {
               </div>
 
               <div className="card-actions mt-4">
-                <button className="btn btn-primary btn-sm w-full">
+                <Link
+                  to={`/book-details/${book._id}`}
+                  className="btn btn-primary btn-sm w-full"
+                >
                   View Details
-                </button>
+                </Link>
               </div>
             </div>
           </div>

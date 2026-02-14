@@ -1,7 +1,8 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import useAuth from '../../hooks/useAuth';
+import React from "react";
+import { useLocation, useNavigate } from "react-router";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const SocialLogin = () => {
   const location = useLocation();
@@ -20,12 +21,14 @@ const SocialLogin = () => {
           photoURL: res.user.photoURL,
         };
         axiosSecure.post("/users", userInfo).then((res) => {
-          console.log("user posted to db successfully ", res.data);
+          // console.log("user posted to db successfully ", res.data);
+          toast.success('Login Successful');
           navigate(location.state || "/");
         });
       })
       .catch((error) => {
         console.log(error);
+        toast.error('Login failed');
       });
   };
   return (

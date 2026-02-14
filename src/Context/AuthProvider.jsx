@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  console.log('user form auth provider ', { user });
+  // console.log('user form auth provider ', { user });
 
   const authInfo = {
     user,

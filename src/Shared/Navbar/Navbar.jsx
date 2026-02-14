@@ -98,6 +98,9 @@ const Navbar = () => {
               tabIndex="-1"
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
+              <li>
+                <p>{user.displayName}</p>
+              </li>
               <li className="my-2">
                 <input
                   onChange={(e) => handleTheme(e.target.checked)}

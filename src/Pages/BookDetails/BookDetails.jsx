@@ -8,10 +8,9 @@ import { BiHeart } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import Logo from "../../Components/Logo/Logo";
-
+import Swal from "sweetalert2";
 
 const BookDetails = () => {
-
   const { id } = useParams();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -25,24 +24,36 @@ const BookDetails = () => {
     error,
   } = useQuery({
     queryKey: ["book", id],
-    queryFn: async() => {
+    queryFn: async () => {
       const res = await axiosSecure.get(`/all-books/${id}`);
       return res.data;
-    }
+    },
   });
 
   const { register, handleSubmit, reset } = useForm({
-      shouldUnregister: true,
+    shouldUnregister: true,
   });
-  
+
   const handleOrder = (data) => {
-    console.log('order placed', { data });
-    modalRef.current.close();
-  }
+    data.bookId = book._id;
+    data.bookName = book.bookName;
+    data.bookPrice = book.bookPrice;
+    // console.log("order placed", { data });
+    axiosSecure.post("/orders", data).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          title: "Congrates",
+          text: "Order Placed Successfully.",
+          icon: "success",
+        });
+         modalRef.current.close();
+         reset();
+      }
+    });
+   
+  };
 
-
-  if (isLoading)
-    return <Loading></Loading>
+  if (isLoading) return <Loading></Loading>;
   if (isError)
     return (
       <div className="text-red-500 text-center mt-10">
@@ -51,7 +62,7 @@ const BookDetails = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 lg:mt-8 lg:mb-10">
       <div className="max-w-5xl mx-auto">
         {/* Back Button */}
         <button
@@ -142,7 +153,9 @@ const BookDetails = () => {
       <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <div className="flex justify-between items-center">
-            <h3 className="font-bold text-lg"><Logo></Logo></h3>
+            <h3 className="font-bold text-lg">
+              <Logo></Logo>
+            </h3>
             <div className="modal-action -mt-1.5">
               <form method="dialog">
                 {/* if there is a button in form, it will close the modal */}
@@ -150,7 +163,7 @@ const BookDetails = () => {
               </form>
             </div>
           </div>
-          
+
           <div>
             <form onSubmit={handleSubmit(handleOrder)}>
               <fieldset className="fieldset">

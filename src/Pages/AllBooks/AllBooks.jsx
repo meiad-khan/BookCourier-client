@@ -9,16 +9,13 @@ const AllBooks = () => {
   const axiosSecure = useAxiosSecure();
   const [wishlist, setWishlist] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [sort, setSort] = useState("price");
-  const [order, setOrder] = useState("asc");
-  const [searchText, setSearchText] = useState("");
   const limit = 6;
 
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: ["all-books", currentPage, sort, order, searchText],
+    queryKey: ["all-books", currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/all-books?limit=${limit}&skip=${currentPage * limit}&sort=${sort}&order=${order}&search=${searchText}`,
+        `/all-books?limit=${limit}&skip=${currentPage * limit}}`,
       );
       return res.data;
     },
@@ -37,14 +34,6 @@ const AllBooks = () => {
       setWishlist([...wishlist, id]);
     }
   };
-
-  const handleSearch = () => {
-    
-  }
-
-  const handleSort = () => {
-    
-  }
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -80,7 +69,6 @@ const AllBooks = () => {
               </g>
             </svg>
             <input
-              onChange={handleSearch}
               type="search"
               required
               placeholder="Search"
@@ -91,7 +79,6 @@ const AllBooks = () => {
         {/* sort */}
         <div>
           <select
-            onChange={handleSort}
             defaultValue="Sort"
             className="select select-md"
           >
@@ -152,7 +139,10 @@ const AllBooks = () => {
               </div>
 
               <div className="card-actions mt-4">
-                <Link to={`/all-books/${book._id}`} className="btn btn-primary btn-sm w-full">
+                <Link
+                  to={`/book-details/${book._id}`}
+                  className="btn btn-primary btn-sm w-full"
+                >
                   View Details
                 </Link>
               </div>
