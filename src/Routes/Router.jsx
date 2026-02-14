@@ -14,6 +14,7 @@ import Orders from "../Pages/Dashboard/Orders/Orders";
 import BookDetails from "../Pages/BookDetails/BookDetails";
 import PaymentSuccessful from "../Pages/Dashboard/PaymentSuccess/PaymentSuccessful";
 import PaymentFailed from "../Pages/Dashboard/PaymentFailed/PaymentFailed";
+import EditBook from "../Pages/Dashboard/EditBook/EditBook";
 
 const router = createBrowserRouter([
   {
@@ -72,12 +73,16 @@ const router = createBrowserRouter([
       },
       {
         path: "payment-success",
-        element: <PaymentSuccessful></PaymentSuccessful>
+        element: <PaymentSuccessful></PaymentSuccessful>,
       },
       {
-        path: 'payment-cancelled',
-        element:<PaymentFailed></PaymentFailed>
-      }
+        path: "payment-cancelled",
+        element: <PaymentFailed></PaymentFailed>,
+      },
+      {
+        path: "edit-book/:id",
+        element: <EditBook></EditBook>,
+      },
     ],
   },
 ]);

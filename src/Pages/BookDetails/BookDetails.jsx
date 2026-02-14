@@ -37,6 +37,7 @@ const BookDetails = () => {
     data.bookId = book._id;
     data.bookName = book.bookName;
     data.bookPrice = book.bookPrice;
+    data.librarianEmail = book.librarianEmail;
     // console.log("order placed", { data });
     axiosSecure.post("/orders", data).then((res) => {
       if (res.data.insertedId) {
