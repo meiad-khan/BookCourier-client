@@ -17,7 +17,7 @@ const AllBooks = () => {
     queryKey: ["all-books", currentPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/all-books?limit=${limit}&skip=${currentPage * limit}`,
+        `/all-books/published?limit=${limit}&skip=${currentPage * limit}`,
       );
       return res.data;
     },

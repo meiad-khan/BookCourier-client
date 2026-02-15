@@ -19,7 +19,7 @@ const EditBook = () => {
   });
   const [loading, setLoading] = useState(true);
 
-  // Fetch book data
+ 
   useEffect(() => {
     const fetchBook = async () => {
       try {

@@ -18,6 +18,11 @@ import EditBook from "../Pages/Dashboard/EditBook/EditBook";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AllUser from "../Pages/Dashboard/All User/AllUser";
 import ManageBooks from "../Pages/Dashboard/ManageBooks/ManageBooks";
+import PrivateRoute from "./PrivateRoute";
+import Forbidden from "../Pages/Dashboard/Forbidden/Forbidden";
+import AdminRoute from "./AdminRoute";
+import DashboardHomeRedirect from "../Pages/Dashboard/DashboardHomeRedirect/DashboardHomeRedirect";
+import LibrarianRoute from "./LibrarianRoute";
 
 const router = createBrowserRouter([
   {
@@ -42,14 +47,26 @@ const router = createBrowserRouter([
       },
       {
         path: "book-details/:id",
-        element: <BookDetails></BookDetails>,
+        element: (
+          <PrivateRoute>
+            <BookDetails></BookDetails>
+          </PrivateRoute>
+        ),
       },
     ],
   },
   {
     path: "dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
+      {
+        index: true,
+        element: <DashboardHomeRedirect></DashboardHomeRedirect>,
+      },
       {
         path: "my-orders",
         element: <MyOrders></MyOrders>,
@@ -64,15 +81,27 @@ const router = createBrowserRouter([
       },
       {
         path: "add-book",
-        element: <AddBook></AddBook>,
+        element: (
+          <LibrarianRoute>
+            <AddBook></AddBook>
+          </LibrarianRoute>
+        ),
       },
       {
         path: "my-books",
-        element: <MyBooks></MyBooks>,
+        element: (
+          <LibrarianRoute>
+            <MyBooks></MyBooks>
+          </LibrarianRoute>
+        ),
       },
       {
         path: "orders",
-        element: <Orders></Orders>,
+        element: (
+          <LibrarianRoute>
+            <Orders></Orders>
+          </LibrarianRoute>
+        ),
       },
       {
         path: "payment-success",
@@ -84,16 +113,28 @@ const router = createBrowserRouter([
       },
       {
         path: "edit-book/:id",
-        element: <EditBook></EditBook>,
+        element: (
+          <LibrarianRoute>
+            <EditBook></EditBook>
+          </LibrarianRoute>
+        ),
       },
       {
-        path: 'all-users',
-        element: <AllUser></AllUser>
+        path: "all-users",
+        element: (
+          <AdminRoute>
+            <AllUser></AllUser>
+          </AdminRoute>
+        ),
       },
       {
-        path: 'manage-books',
-        element: <ManageBooks></ManageBooks>
-      }
+        path: "manage-books",
+        element: (
+          <AdminRoute>
+            <ManageBooks></ManageBooks>
+          </AdminRoute>
+        ),
+      },
       // {
       //   path: '*',
       //   element: <ErrorPage></ErrorPage>
@@ -101,9 +142,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '*',
-    element: <ErrorPage></ErrorPage>
-  }
+    path: "*",
+    element: <ErrorPage></ErrorPage>,
+  },
 ]);
 
 export default router;

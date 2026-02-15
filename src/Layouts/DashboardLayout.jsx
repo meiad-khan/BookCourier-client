@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import { FaFileInvoiceDollar } from 'react-icons/fa';
 import { HiOutlineUser, HiUserGroup } from 'react-icons/hi';
 import { MdLibraryAdd, MdLibraryBooks, MdMenuBook, MdShoppingCart } from 'react-icons/md';
@@ -10,7 +10,7 @@ const DashboardLayout = () => {
 
 
   const { role } = useRole();
-  console.log('your role is ', role);
+  // console.log('your role is ', role);
 
   return (
     <div className="drawer lg:drawer-open">
@@ -39,7 +39,9 @@ const DashboardLayout = () => {
               <path d="M14 10l2 2l-2 2"></path>
             </svg>
           </label>
-          <div className="px-4"><Logo></Logo></div>
+          <div className="px-4">
+            <Logo></Logo>
+          </div>
         </nav>
         {/* Page content here */}
         {/* <div className="p-4">Page Content</div> */}
@@ -82,101 +84,125 @@ const DashboardLayout = () => {
               </NavLink>
             </li>
 
-            {/* My Orders */}
-            <li>
-              <NavLink
-                to={"/dashboard/my-orders"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
-                data-tip="My Orders"
-              >
-                <MdShoppingCart></MdShoppingCart>
-                <span className="is-drawer-close:hidden">My Orders</span>
-              </NavLink>
-            </li>
+            {role === "user" && (
+              <>
+                {/* My Orders */}
+                <li>
+                  <NavLink
+                    to={"/dashboard/my-orders"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                    data-tip="My Orders"
+                  >
+                    <MdShoppingCart></MdShoppingCart>
+                    <span className="is-drawer-close:hidden">My Orders</span>
+                  </NavLink>
+                </li>
 
-            {/* my profile */}
-            <li>
-              <NavLink
-                to={"/dashboard/my-profile"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
-                data-tip="My Profile"
-              >
-                <HiOutlineUser></HiOutlineUser>
-                <span className="is-drawer-close:hidden">My Profile</span>
-              </NavLink>
-            </li>
+                {/* my profile */}
+                <li>
+                  <NavLink
+                    to={"/dashboard/my-profile"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                    data-tip="My Profile"
+                  >
+                    <HiOutlineUser></HiOutlineUser>
+                    <span className="is-drawer-close:hidden">My Profile</span>
+                  </NavLink>
+                </li>
 
-            {/* invoices here */}
-            <li>
-              <NavLink
-                to={"/dashboard/invoice"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
-                data-tip="Invoice"
-              >
-                <FaFileInvoiceDollar></FaFileInvoiceDollar>
-                <span className="is-drawer-close:hidden">Invoice</span>
-              </NavLink>
-            </li>
+                {/* invoices here */}
+                <li>
+                  <NavLink
+                    to={"/dashboard/invoice"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                    data-tip="Invoice"
+                  >
+                    <FaFileInvoiceDollar></FaFileInvoiceDollar>
+                    <span className="is-drawer-close:hidden">Invoice</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
-            {/* Add books */}
-            <li>
-              <NavLink
-                to={"/dashboard/add-book"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
-                data-tip="Add Book"
-              >
-                <MdLibraryAdd></MdLibraryAdd>
-                <span className="is-drawer-close:hidden">Add Book</span>
-              </NavLink>
-            </li>
+            {role === "librarian" && (
+              <>
+                {/* Add books */}
+                <li>
+                  <NavLink
+                    to={"/dashboard/add-book"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                    data-tip="Add Book"
+                  >
+                    <MdLibraryAdd></MdLibraryAdd>
+                    <span className="is-drawer-close:hidden">Add Book</span>
+                  </NavLink>
+                </li>
 
-            {/* My Books  */}
-            <li>
-              <NavLink
-                to={"/dashboard/my-books"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
-                data-tip="My Books"
-              >
-                <MdMenuBook></MdMenuBook>
-                <span className="is-drawer-close:hidden">My Books</span>
-              </NavLink>
-            </li>
+                {/* My Books  */}
+                <li>
+                  <NavLink
+                    to={"/dashboard/my-books"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                    data-tip="My Books"
+                  >
+                    <MdMenuBook></MdMenuBook>
+                    <span className="is-drawer-close:hidden">My Books</span>
+                  </NavLink>
+                </li>
 
-            {/* orders  */}
-            <li>
-              <NavLink
-                to={"/dashboard/orders"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
-                data-tip="Orders"
-              >
-                <MdShoppingCart></MdShoppingCart>
-                <span className="is-drawer-close:hidden">Orders</span>
-              </NavLink>
-            </li>
+                {/* orders  */}
+                <li>
+                  <NavLink
+                    to={"/dashboard/orders"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                    data-tip="Orders"
+                  >
+                    <MdShoppingCart></MdShoppingCart>
+                    <span className="is-drawer-close:hidden">Orders</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
-            {/* All Users  */}
-            <li>
-              <NavLink
-                to={"/dashboard/all-users"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
-                data-tip="All Users"
-              >
-                <HiUserGroup></HiUserGroup>
-                <span className="is-drawer-close:hidden">All Users</span>
-              </NavLink>
-            </li>
+            {role === "admin" && (
+              <>
+                {/* All Users  */}
+                <li>
+                  <NavLink
+                    to={"/dashboard/all-users"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                    data-tip="All Users"
+                  >
+                    <HiUserGroup></HiUserGroup>
+                    <span className="is-drawer-close:hidden">All Users</span>
+                  </NavLink>
+                </li>
 
-            {/*  Manage Books  */}
-            <li>
-              <NavLink
-                to={"/dashboard/manage-books"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
-                data-tip="Manage Books"
-              >
-                <MdLibraryBooks></MdLibraryBooks>
-                <span className="is-drawer-close:hidden">Manage Books</span>
-              </NavLink>
-            </li>
+                {/*  Manage Books  */}
+                <li>
+                  <NavLink
+                    to={"/dashboard/manage-books"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                    data-tip="Manage Books"
+                  >
+                    <MdLibraryBooks></MdLibraryBooks>
+                    <span className="is-drawer-close:hidden">Manage Books</span>
+                  </NavLink>
+                </li>
+
+                {/* my profile */}
+                <li>
+                  <NavLink
+                    to={"/dashboard/my-profile"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                    data-tip="My Profile"
+                  >
+                    <HiOutlineUser></HiOutlineUser>
+                    <span className="is-drawer-close:hidden">My Profile</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* List item */}
             <li>

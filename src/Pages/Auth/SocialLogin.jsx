@@ -23,7 +23,7 @@ const SocialLogin = () => {
         axiosSecure.post("/users", userInfo).then((res) => {
           // console.log("user posted to db successfully ", res.data);
           toast.success('Login Successful');
-          navigate(location.state || "/");
+           navigate(`${location.state ? location.state : "/"}`);
         });
       })
       .catch((error) => {

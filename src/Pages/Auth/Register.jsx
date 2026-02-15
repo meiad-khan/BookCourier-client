@@ -57,7 +57,7 @@ const Register = () => {
           updateUser(profile)
             .then(() => {
               // console.log('succesfull');
-              navigate(location.state || "/");
+               navigate(`${location.state ? location.state : "/"}`);
             })
             .catch((error) => {
               console.log(error);

@@ -31,7 +31,7 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 pt-5 pb-10">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center px-4 pt-5 pb-10">
       <div className="w-full max-w-4xl bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 transition-colors duration-300">
         <h2 className="text-4xl font-bold text-center text-indigo-600 dark:text-indigo-400 mb-8">
           My Profile
@@ -44,7 +44,7 @@ const MyProfile = () => {
             alt="User"
             className="w-28 h-28 rounded-full border-4 border-primary shadow-md"
           />
-          <h3 className="text-xl text-primary font-semibold">
+          <h3 className="text-xl text-gray-600 font-semibold">
             {user?.displayName}
           </h3>
           <p className="text-gray-600 dark:text-gray-300">{user?.email}</p>

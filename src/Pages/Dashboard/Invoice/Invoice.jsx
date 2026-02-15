@@ -21,21 +21,19 @@ const Invoice = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 px-4 py-10">
-      <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8">
-        <h2 className="text-3xl font-bold text-center mb-8 text-primary dark:text-indigo-400">
+    <div className="min-h-screen bg-base-200 px-4 py-10">
+      <div className="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
+        <h2 className="text-3xl font-bold text-center mb-8 text-primary ">
           My Invoices
         </h2>
 
         {payments.length === 0 ? (
-          <p className="text-center text-gray-500 dark:text-gray-300">
-            No payments found.
-          </p>
+          <p className="text-center text-gray-500 ">No payments found.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>
-                <tr className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                <tr className="bg-gray-200 text-gray-700 ">
                   <th>#</th>
                   <th>Payment ID</th>
                   <th>Book Name</th>
@@ -48,21 +46,21 @@ const Invoice = () => {
                 {payments.map((payment, index) => (
                   <tr
                     key={payment._id}
-                    className="hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                    className="hover:bg-gray-100 transition"
                   >
-                    <td className="text-primary">{index + 1}</td>
+                    <td className="text-gray-600">{index + 1}</td>
 
-                    <td className="font-mono text-primary text-sm">
+                    <td className="font-mono text-gray-600 text-sm">
                       {payment.orderId}
                     </td>
 
-                    <td className="text-primary">{payment.bookName}</td>
+                    <td className="text-gray-600">{payment.bookName}</td>
 
                     <td className="font-semibold text-green-600">
                       ${payment.amount}
                     </td>
 
-                    <td className="text-primary">
+                    <td className="text-gray-600">
                       {new Date(payment.paidAt).toLocaleDateString()}
                     </td>
                   </tr>

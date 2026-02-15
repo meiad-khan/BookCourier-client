@@ -62,22 +62,22 @@ const MyOrders = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="min-h-screen transition-colors duration-300 bg-[#F4EDE4] dark:bg-gray-900">
-      <div className="overflow-x-auto mt-8 shadow-lg rounded-2xl p-6 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <h3 className="text-4xl text-center text-[#0F766E] dark:text-[#F4EDE4] mb-6 font-bold">
+    <div className="min-h-screen transition-colors duration-300 bg-base-200">
+      <div className="overflow-x-auto mt-8 shadow-lg rounded-2xl p-6 bg-white transition-colors duration-300">
+        <h3 className="text-4xl text-center text-[#0F766E] mb-6 font-bold">
           My Orders
         </h3>
 
         {orders.length === 0 ? (
           <div className="text-center mt-10">
-            <p className="text-lg text-[#0F766E] dark:text-[#F4EDE4]">
+            <p className="text-lg text-[#0F766E]">
               You have not ordered any book
             </p>
           </div>
         ) : (
-          <table className="table w-full text-gray-800 dark:text-gray-200">
+          <table className="table w-full text-gray-800">
             {/* head */}
-            <thead className="bg-[#0F766E] dark:bg-[#0F766E] text-white">
+            <thead className="bg-[#0F766E] text-white">
               <tr>
                 <th>SL</th>
                 <th>Book Title</th>
@@ -91,7 +91,7 @@ const MyOrders = () => {
               {orders.map((order, index) => (
                 <tr
                   key={order._id}
-                  className="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="hover:bg-gray-100 transition-colors"
                 >
                   <th>{index + 1}</th>
                   <td>{order.bookName}</td>
@@ -100,12 +100,12 @@ const MyOrders = () => {
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-semibold ${
                         order.orderStatus === "pending"
-                          ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-700 dark:text-yellow-100"
+                          ? "bg-yellow-100 text-yellow-700"
                           : order.orderStatus === "shipped"
-                            ? "bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100"
+                            ? "bg-blue-100 text-blue-700"
                             : order.orderStatus === "delivered"
-                              ? "bg-green-100 text-green-700 dark:bg-green-700 dark:text-green-100"
-                              : "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-100"
+                              ? "bg-green-100 text-green-700"
+                              : "bg-gray-100 text-gray-700"
                       }`}
                     >
                       {order.orderStatus}
@@ -115,8 +115,8 @@ const MyOrders = () => {
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-semibold ${
                         order.paymentStatus === "paid"
-                          ? "bg-green-100 text-green-700 dark:bg-green-700 dark:text-green-100"
-                          : "bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-700"
                       }`}
                     >
                       {order.paymentStatus}
@@ -128,7 +128,7 @@ const MyOrders = () => {
                       order.paymentStatus === "unpaid" && (
                         <button
                           onClick={() => handlePayment(order)}
-                          className="btn btn-sm bg-[#0F766E] text-white hover:bg-[#0D635D] dark:bg-[#0F766E] dark:hover:bg-[#0D635D]"
+                          className="btn btn-sm bg-[#0F766E] text-white hover:bg-[#0D635D]"
                         >
                           Pay Now
                         </button>

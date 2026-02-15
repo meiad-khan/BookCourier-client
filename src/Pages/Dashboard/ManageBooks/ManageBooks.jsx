@@ -10,20 +10,21 @@ const ManageBooks = () => {
   const queryClient = useQueryClient();
 
   
-  const { data: books = [], isLoading } = useQuery({
+  const { data: books = [], isLoading, refetch } = useQuery({
     queryKey: ["all-books"],
     queryFn: async () => {
       const res = await axiosSecure.get("/all-books");
-      return res.data.result;
+      return res.data;
     },
   });
 
   
   const statusMutation = useMutation({
     mutationFn: async ({ id, newStatus }) => {
-      const res = await axiosSecure.patch(`/all-books/status/${id}`, {
-        bookStatus: newStatus,
-      });
+      const newBook = {
+        bookStatus:newStatus,
+      }
+      const res = await axiosSecure.patch(`/all-books/${id}`, newBook);
       return res.data;
     },
     onSuccess: () => {
@@ -44,10 +45,10 @@ const ManageBooks = () => {
     },
   });
 
-  // Handle Status Change
+  
   const handleStatus = (id, currentStatus) => {
     const newStatus =
-      currentStatus === "published" ? "unpublished" : "published";
+      currentStatus === "Published" ? "Unpublished" : "Published";
 
     statusMutation.mutate({ id, newStatus });
   };
@@ -70,14 +71,14 @@ const ManageBooks = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="min-h-screen p-6 bg-[#F4EDE4] dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-        <h2 className="text-3xl font-bold text-center mb-6 text-[#0F766E] dark:text-[#F4EDE4]">
+    <div className="min-h-screen p-6 bg-base-200">
+      <div className="bg-white p-6 rounded-xl shadow-lg">
+        <h2 className="text-3xl font-bold text-center mb-6 text-[#0F766E] ">
           Manage Books
         </h2>
 
         <div className="overflow-x-auto">
-          <table className="table w-full text-gray-800 dark:text-gray-200">
+          <table className="table w-full text-gray-800 ">
             <thead className="bg-[#0F766E] text-white">
               <tr>
                 <th>#</th>
@@ -97,7 +98,7 @@ const ManageBooks = () => {
                   <td>
                     <span
                       className={`badge ${
-                        book.bookStatus === "published"
+                        book.bookStatus === "Published"
                           ? "badge-success"
                           : "badge-warning"
                       }`}
@@ -111,7 +112,7 @@ const ManageBooks = () => {
                       onClick={() => handleStatus(book._id, book.bookStatus)}
                       className="btn btn-sm btn-info"
                     >
-                      {book.bookStatus === "published"
+                      {book.bookStatus === "Published"
                         ? "Unpublish"
                         : "Publish"}
                     </button>

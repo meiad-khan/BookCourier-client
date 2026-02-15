@@ -37,21 +37,19 @@ const Orders = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 px-4 py-10">
-      <div className="max-w-7xl mx-auto bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8">
-        <h2 className="text-3xl font-bold text-center mb-8 text-primary dark:text-indigo-400">
+    <div className="min-h-screen  bg-base-200 px-4 py-10">
+      <div className="max-w-7xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
+        <h2 className="text-3xl font-bold text-center mb-8 text-primary">
           Book Orders
         </h2>
 
         {orders.length === 0 ? (
-          <p className="text-center text-gray-500 dark:text-gray-300">
-            No orders found.
-          </p>
+          <p className="text-center text-gray-500">No orders found.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                <tr className="bg-gray-200 text-gray-700 ">
                   <th className="p-3 text-left">#</th>
                   <th className="p-3 text-left">Book</th>
                   <th className="p-3 text-left">Buyer</th>
@@ -66,15 +64,15 @@ const Orders = () => {
                 {orders.map((order, index) => (
                   <tr
                     key={order._id}
-                    className="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                    className="border-b hover:bg-gray-100 transition"
                   >
-                    <td className="p-3 text-primary">{index + 1}</td>
+                    <td className="p-3 text-black">{index + 1}</td>
 
-                    <td className="p-3 font-semibold text-primary">
+                    <td className="p-3 font-semibold text-black">
                       {order.bookName}
                     </td>
 
-                    <td className="p-3 text-sm text-primary">
+                    <td className="p-3 text-sm text-black">
                       {order.customerEmail}
                     </td>
 
@@ -99,7 +97,7 @@ const Orders = () => {
                       </select>
                     </td>
 
-                    <td className="p-3 text-sm text-primary">
+                    <td className="p-3 text-sm text-black">
                       {new Date(order.createdAt).toLocaleDateString()}
                     </td>
 

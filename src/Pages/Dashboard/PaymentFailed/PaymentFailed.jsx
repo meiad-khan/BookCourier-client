@@ -8,7 +8,7 @@ const PaymentFailed = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
-      <div className="card w-full max-w-lg bg-base-100 shadow-2xl rounded-2xl">
+      <div className="card w-full max-w-lg bg-white shadow-2xl rounded-2xl">
         <div className="card-body text-center">
           
           <div className="flex justify-center mb-6">

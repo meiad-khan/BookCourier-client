@@ -21,7 +21,7 @@ const Login = () => {
       .then(() => {
         // console.log(result);
         toast.success('Login Successful');
-        navigate(location.state || "/");
+         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         console.log(error);

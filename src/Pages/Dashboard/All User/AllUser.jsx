@@ -50,7 +50,7 @@ const AllUser = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-10 px-4 py-10">
+    <div className="min-h-screen bg-gray-10 bg-base-200 px-4 py-10">
       <div className="max-w-7xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-center mb-8 text-primary">
           All Users
@@ -74,15 +74,13 @@ const AllUser = () => {
                   key={user._id}
                   className="border-b hover:bg-gray-100  transition"
                 >
-                  <td className="p-3 text-primary">{index + 1}</td>
+                  <td className="p-3 text-black">{index + 1}</td>
 
-                  <td className="p-3 text-primary">
-                    {user.displayName || "N/A"}
-                  </td>
+                  <td className="p-3 text-black">{user.displayName}</td>
 
-                  <td className="p-3 text-primary">{user.email}</td>
+                  <td className="p-3 text-black">{user.email}</td>
 
-                  <td className="p-3 capitalize text-primary font-semibold">
+                  <td className="p-3 capitalize text-black font-semibold">
                     {user.role || "user"}
                   </td>
 
