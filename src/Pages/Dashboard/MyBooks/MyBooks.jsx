@@ -60,7 +60,7 @@ const MyBooks = () => {
                 key={book._id}
                 className="hover:bg-gray-100 transition-colors"
               >
-                <td className="px-4 py-3">{index + 1}</td>
+                <td className="px-4 py-3 text-primary">{index + 1}</td>
                 <td className="px-4 py-3">
                   <img
                     src={book.bookImage}
@@ -74,7 +74,7 @@ const MyBooks = () => {
                 <td className="px-4 py-3">
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      book.bookStatus === "published"
+                      book.bookStatus === "Published"
                         ? "bg-green-100 text-green-700"
                         : "bg-yellow-100 text-yellow-700"
                     }`}

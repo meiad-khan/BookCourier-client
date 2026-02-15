@@ -111,7 +111,7 @@ const AddBook = () => {
             </div>
             <input
               type="submit"
-              value="Send Percel"
+              value="Add Book"
               className="btn btn-primary mt-8 text-white"
             />
           </fieldset>

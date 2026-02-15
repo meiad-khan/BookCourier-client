@@ -1,16 +1,84 @@
-# React + Vite
+# 📚 BookCourier
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BookCourier is a full-stack role-based book management and ordering platform.  
+It allows users to browse and order books, librarians to manage book listings, and administrators to control users and book publishing.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Website
 
-## React Compiler
+🔗 Live URL: https://librago-app.web.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🎯 Project Purpose
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The purpose of this project is to:
+
+- Implement role-based authentication and authorization
+- Practice protected routing in React
+- Build a dashboard system with multiple roles
+- Manage relational data (Books & Orders)
+- Apply full-stack development concepts using MERN stack
+
+---
+
+## 👥 User Roles & Features
+
+### 👤 User
+- Register & Login
+- Browse all books
+- View book details
+- Place orders
+- View personal order history
+- View invoice
+
+---
+
+### 📚 Librarian
+- Add new books
+- Edit books
+- View own added books
+- Manage book listings
+
+---
+
+### 👑 Admin
+- View all users
+- Manage all books
+- Publish / Unpublish books
+- Delete books (automatically deletes related orders)
+- Access control for dashboard routes
+
+---
+
+## 🔐 Authentication & Authorization
+
+- JWT-based authentication
+- Private routes for logged-in users
+- Role-based route protection (AdminRoute)
+- Forbidden page for unauthorized access
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React
+- React Router
+- Tailwind CSS
+- React Icons
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT (jsonwebtoken)
+- dotenv
+- cors
+
+---
+
+## 📦 NPM Packages Used
+
+### Frontend

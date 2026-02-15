@@ -63,8 +63,8 @@ const EditBook = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="min-h-screen p-6 bg-[#F4EDE4] dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-8">
+    <div className="min-h-screen p-6 bg-base-200 transition-colors duration-300">
+      <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-2xl p-8">
         <h2 className="text-3xl font-bold mb-6 text-[#0F766E] dark:text-[#F4EDE4]">
           Edit Book
         </h2>
@@ -72,7 +72,7 @@ const EditBook = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Book Name */}
           <div>
-            <label className="label text-gray-700 dark:text-gray-200">
+            <label className="label text-gray-700">
               Book Name
             </label>
             <input
@@ -87,7 +87,7 @@ const EditBook = () => {
 
           {/* Author */}
           <div>
-            <label className="label text-gray-700 dark:text-gray-200">
+            <label className="label text-gray-700">
               Author
             </label>
             <input
@@ -102,7 +102,7 @@ const EditBook = () => {
 
           {/* Price */}
           <div>
-            <label className="label text-gray-700 dark:text-gray-200">
+            <label className="label text-gray-700">
               Price
             </label>
             <input
@@ -118,7 +118,7 @@ const EditBook = () => {
 
           {/* Status */}
           <div>
-            <label className="label text-gray-700 dark:text-gray-200">
+            <label className="label text-gray-700 ">
               Status
             </label>
             <select
@@ -134,7 +134,7 @@ const EditBook = () => {
 
           {/* Image URL */}
           <div>
-            <label className="label text-gray-700 dark:text-gray-200">
+            <label className="label text-gray-700">
               Book Image URL
             </label>
             <input
@@ -150,7 +150,7 @@ const EditBook = () => {
           {/* Preview Image */}
           {formData.bookImage && (
             <div className="mt-4">
-              <p className="text-gray-700 dark:text-gray-200 mb-2">Preview:</p>
+              <p className="text-gray-700 mb-2">Preview:</p>
               <img
                 src={formData.bookImage}
                 alt={formData.bookName}
@@ -163,14 +163,14 @@ const EditBook = () => {
           <div className="mt-6 flex gap-4">
             <button
               type="submit"
-              className="btn bg-[#0F766E] text-white hover:bg-[#0D635D] dark:bg-[#0F766E] dark:hover:bg-[#0D635D]"
+              className="btn bg-[#0F766E] text-white hover:bg-[#0D635D]"
             >
               Update Book
             </button>
             <button
               type="button"
               onClick={() => navigate("/dashboard/my-books")}
-              className="btn btn-outline dark:text-gray-200"
+              className="btn btn-secondary btn-outline"
             >
               Cancel
             </button>
