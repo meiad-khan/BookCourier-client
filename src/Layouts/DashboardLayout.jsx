@@ -3,8 +3,15 @@ import { FaFileInvoiceDollar } from 'react-icons/fa';
 import { HiOutlineUser, HiUserGroup } from 'react-icons/hi';
 import { MdLibraryAdd, MdLibraryBooks, MdMenuBook, MdShoppingCart } from 'react-icons/md';
 import { NavLink, Outlet } from 'react-router';
+import Logo from '../Components/Logo/Logo';
+import useRole from '../hooks/useRole';
 
 const DashboardLayout = () => {
+
+
+  const { role } = useRole();
+  console.log('your role is ', role);
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -32,7 +39,7 @@ const DashboardLayout = () => {
               <path d="M14 10l2 2l-2 2"></path>
             </svg>
           </label>
-          <div className="px-4">Navbar Title</div>
+          <div className="px-4"><Logo></Logo></div>
         </nav>
         {/* Page content here */}
         {/* <div className="p-4">Page Content</div> */}
