@@ -15,6 +15,9 @@ import BookDetails from "../Pages/BookDetails/BookDetails";
 import PaymentSuccessful from "../Pages/Dashboard/PaymentSuccess/PaymentSuccessful";
 import PaymentFailed from "../Pages/Dashboard/PaymentFailed/PaymentFailed";
 import EditBook from "../Pages/Dashboard/EditBook/EditBook";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AllUser from "../Pages/Dashboard/All User/AllUser";
+import ManageBooks from "../Pages/Dashboard/ManageBooks/ManageBooks";
 
 const router = createBrowserRouter([
   {
@@ -83,8 +86,24 @@ const router = createBrowserRouter([
         path: "edit-book/:id",
         element: <EditBook></EditBook>,
       },
+      {
+        path: 'all-users',
+        element: <AllUser></AllUser>
+      },
+      {
+        path: 'manage-books',
+        element: <ManageBooks></ManageBooks>
+      }
+      // {
+      //   path: '*',
+      //   element: <ErrorPage></ErrorPage>
+      // }
     ],
   },
+  {
+    path: '*',
+    element: <ErrorPage></ErrorPage>
+  }
 ]);
 
 export default router;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaFileInvoiceDollar } from 'react-icons/fa';
-import { HiOutlineUser } from 'react-icons/hi';
-import { MdLibraryAdd, MdMenuBook, MdShoppingCart } from 'react-icons/md';
+import { HiOutlineUser, HiUserGroup } from 'react-icons/hi';
+import { MdLibraryAdd, MdLibraryBooks, MdMenuBook, MdShoppingCart } from 'react-icons/md';
 import { NavLink, Outlet } from 'react-router';
 
 const DashboardLayout = () => {
@@ -54,7 +54,7 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 to={"/"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
                 data-tip="Homepage"
               >
                 {/* Home icon */}
@@ -79,7 +79,7 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 to={"/dashboard/my-orders"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
                 data-tip="My Orders"
               >
                 <MdShoppingCart></MdShoppingCart>
@@ -91,7 +91,7 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 to={"/dashboard/my-profile"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
                 data-tip="My Profile"
               >
                 <HiOutlineUser></HiOutlineUser>
@@ -103,7 +103,7 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 to={"/dashboard/invoice"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
                 data-tip="Invoice"
               >
                 <FaFileInvoiceDollar></FaFileInvoiceDollar>
@@ -115,7 +115,7 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 to={"/dashboard/add-book"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
                 data-tip="Add Book"
               >
                 <MdLibraryAdd></MdLibraryAdd>
@@ -127,7 +127,7 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 to={"/dashboard/my-books"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
                 data-tip="My Books"
               >
                 <MdMenuBook></MdMenuBook>
@@ -139,7 +139,7 @@ const DashboardLayout = () => {
             <li>
               <NavLink
                 to={"/dashboard/orders"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
                 data-tip="Orders"
               >
                 <MdShoppingCart></MdShoppingCart>
@@ -147,10 +147,34 @@ const DashboardLayout = () => {
               </NavLink>
             </li>
 
+            {/* All Users  */}
+            <li>
+              <NavLink
+                to={"/dashboard/all-users"}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                data-tip="All Users"
+              >
+                <HiUserGroup></HiUserGroup>
+                <span className="is-drawer-close:hidden">All Users</span>
+              </NavLink>
+            </li>
+
+            {/*  Manage Books  */}
+            <li>
+              <NavLink
+                to={"/dashboard/manage-books"}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
+                data-tip="Manage Books"
+              >
+                <MdLibraryBooks></MdLibraryBooks>
+                <span className="is-drawer-close:hidden">Manage Books</span>
+              </NavLink>
+            </li>
+
             {/* List item */}
             <li>
               <button
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right text-[16px]"
                 data-tip="Settings"
               >
                 {/* Settings icon */}
